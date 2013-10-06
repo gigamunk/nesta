@@ -2,6 +2,9 @@ require 'yaml'
 
 module Nesta
   class Config
+    # This is the list of variables that are set in config/config.yml and 
+    # can be referenced
+    #
     @settings = %w[
       title subtitle theme disqus_short_name cache content google_analytics_code
     ]

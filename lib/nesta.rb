@@ -1,3 +1,10 @@
+#--
+# Nesta CMS
+#
+# A simple CMS built on Sinatra
+#
+#++
+
 module Nesta
   def self.deprecated(name, message)
     if Nesta::App.environment != :test

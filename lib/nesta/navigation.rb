@@ -40,6 +40,9 @@ module Nesta
         ancestors.reverse
       end
 
+      # This method will only work from within a haml page, otherwise
+      # haml_buffer is nil and haml_buffer.html? will throw an error
+      #
       def display_breadcrumbs(options = {})
         haml_tag :ul, :class => options[:class] do
           breadcrumb_ancestors[0...-1].each do |page|

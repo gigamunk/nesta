@@ -15,6 +15,7 @@ require File.expand_path('path', File.dirname(__FILE__))
 Encoding.default_external = 'utf-8' if RUBY_VERSION =~ /^1.9/
 
 module Nesta
+  # The basic routes are set here.
   class App < Sinatra::Base
     register Sinatra::Cache
 
@@ -28,6 +29,7 @@ module Nesta
     helpers View::Helpers
 
     before do
+      # Treat urls that end with '/' the same as urls that end without
       if request.path_info =~ Regexp.new('./$')
         redirect to(request.path_info.sub(Regexp.new('/$'), ''))
       end

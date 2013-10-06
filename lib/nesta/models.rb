@@ -12,7 +12,7 @@ module Nesta
   class MetadataParseError < RuntimeError; end
 
   class FileModel
-    FORMATS = [:mdown, :haml, :textile]
+    FORMATS = [:mdown, :erb, :haml, :textile]
     @@page_cache = {}
     @@filename_cache = {}
 

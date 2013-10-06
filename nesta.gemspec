@@ -37,6 +37,7 @@ EOF
   s.add_dependency('RedCloth', '~> 4.2')
   s.add_dependency('sinatra', '~> 1.3')
   s.add_dependency('rack', '~> 1.3')
+  s.add_dependency('tux', '~> 0.3')
 
   # Useful in development
   s.add_development_dependency('mr-sparkle', '>= 0.0.2')

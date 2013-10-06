@@ -291,6 +291,22 @@ end
           update_config_yaml(/^\s*#?\s*theme:.*/, "theme: #{@name}")
         end
       end
+
+      class Console
+        include Command
+
+        def initialize(*args)
+          #name = args.shift
+          options = args.shift || {}
+          #name.nil? && (raise UsageError.new('name not specified'))
+          #@name = name
+        end
+
+        def execute
+          #update_config_yaml(/^\s*#?\s*theme:.*/, "theme: #{@name}")
+          exec 'tux'
+        end
+      end
     end
   end
 end

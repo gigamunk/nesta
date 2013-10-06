@@ -48,7 +48,7 @@ module Nesta
           file.truncate(file.pos)
         end
       end
-    end
+    end # module Command
 
     class Edit
       include Command
@@ -64,7 +64,7 @@ module Nesta
       else
         system(editor, @filename)
       end
-    end
+    end # class Edit
 
     class New
       include Command
@@ -116,7 +116,7 @@ module Nesta
         copy_templates(templates)
         create_repository if @options['git']
       end
-    end
+    end # clas New
 
     module Demo
       class Content
@@ -148,8 +148,8 @@ module Nesta
           configure_git_to_ignore_repo
           update_config_yaml(/^\s*#?\s*content:.*/, "content: #{@dir}")
         end
-      end
-    end
+      end # class Content
+    end # module Demo
 
     module Plugin
       class Create
@@ -222,8 +222,8 @@ end
           specify_gem_dependency
           Dir.chdir(@gem_name) { system('git', 'add', '.') }
         end
-      end
-    end
+      end # class Create
+    end # module Plugin
 
     module Theme
       class Create
@@ -253,7 +253,7 @@ end
             'themes/views/master.sass' => "#{@theme_path}/views/master.sass"
           )
         end
-      end
+      end # class Create
 
       class Install
         include Command
@@ -275,7 +275,7 @@ end
         def enable
           Enable.new(@name).execute
         end
-      end
+      end # class Install
 
       class Enable
         include Command
@@ -290,23 +290,24 @@ end
         def execute
           update_config_yaml(/^\s*#?\s*theme:.*/, "theme: #{@name}")
         end
+      end # class Enable
+    end # module Theme
+
+    class Console
+      include Command
+
+      def initialize(*args)
+        #name = args.shift
+        options = args.shift || {}
+        #name.nil? && (raise UsageError.new('name not specified'))
+        #@name = name
       end
 
-      class Console
-        include Command
-
-        def initialize(*args)
-          #name = args.shift
-          options = args.shift || {}
-          #name.nil? && (raise UsageError.new('name not specified'))
-          #@name = name
-        end
-
-        def execute
-          #update_config_yaml(/^\s*#?\s*theme:.*/, "theme: #{@name}")
-          exec 'tux'
-        end
+      def execute
+        #update_config_yaml(/^\s*#?\s*theme:.*/, "theme: #{@name}")
+        #exec 'tux'
+        system('tux')
       end
-    end
-  end
-end
+    end # class Console
+  end # module Commands
+end # module Nesta
